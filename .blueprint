@@ -1,0 +1,31 @@
+created:
+    - database/factories/CityFactory.php
+    - database/factories/BusinessFactory.php
+    - database/factories/BranchFactory.php
+    - database/factories/StaffFactory.php
+    - database/factories/PositionFactory.php
+    - database/factories/ServiceFactory.php
+    - database/factories/PriceFactory.php
+    - database/migrations/2026_01_23_133634_create_cities_table.php
+    - database/migrations/2026_01_23_133635_create_businesses_table.php
+    - database/migrations/2026_01_23_133636_create_branches_table.php
+    - database/migrations/2026_01_23_133637_create_staff_table.php
+    - database/migrations/2026_01_23_133638_create_positions_table.php
+    - database/migrations/2026_01_23_133639_create_services_table.php
+    - database/migrations/2026_01_23_133640_create_prices_table.php
+    - app/Models/City.php
+    - app/Models/Business.php
+    - app/Models/Branch.php
+    - app/Models/Staff.php
+    - app/Models/Position.php
+    - app/Models/Service.php
+    - app/Models/Price.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable', two_factor_secret: 'text nullable', two_factor_recovery_codes: 'text nullable', two_factor_confirmed_at: 'datetime nullable' }
+    City: { title: 'string:100', status: 'string:100' }
+    Business: { name: 'string:100', description: text, status: 'string:100' }
+    Branch: { city_id: 'id foreign', business_id: 'id foreign', name: 'string:100', status: 'string:100' }
+    Staff: { branch_id: 'id foreign', first_name: 'string:50', last_name: 'string:50', position_id: 'id foreign', status: 'string:100' }
+    Position: { title: 'string:100', status: 'string:100' }
+    Service: { business_id: 'id foreign', staff_id: 'id foreign', name: 'string:100', description: text, status: 'string:100' }
+    Price: { service_id: 'id foreign', amount: decimal, status: 'string:100' }

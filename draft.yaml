@@ -1,0 +1,40 @@
+models:
+  City:
+    title: string:100
+    status: string:100
+
+  Business:
+    name: string:100
+    description: text
+    status: string:100
+
+  Branch:
+    city_id: id foreign
+    business_id: id foreign
+    name: string:100
+    status: string:100
+
+  Staff:
+    branch_id: id foreign
+    first_name: string:50
+    last_name: string:50
+    position_id: id foreign
+    status: string:100
+
+  Position:
+    title: string:100
+    status: string:100
+
+  Service:
+    business_id: id foreign
+    staff_id: id foreign
+    name: string:100
+    description: text
+    status: string:100
+
+  Price:
+    service_id: id foreign
+    amount: decimal
+    status: string:100
+
+
