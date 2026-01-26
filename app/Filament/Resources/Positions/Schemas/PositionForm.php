@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Positions\Schemas;
 
+use App\Enums\StatusEnum;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -13,7 +15,8 @@ class PositionForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(StatusEnum::class)
                     ->required(),
             ]);
     }

@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Businesses\Schemas;
 
-use Filament\Forms\Components\TextInput;
+use App\Enums\StatusEnum;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class BusinessForm
@@ -13,11 +15,14 @@ class BusinessForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->unique(),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(StatusEnum::class)
+                    ->default(StatusEnum::ACTIVE)
                     ->required(),
             ]);
     }

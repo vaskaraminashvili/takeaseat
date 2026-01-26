@@ -16,6 +16,7 @@ use Filament\Tables\Table;
 
 class BranchResource extends Resource
 {
+    protected static ?int $navigationSort = -1;
     protected static ?string $model = Branch::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;

@@ -19,9 +19,25 @@ class Service extends Model
         'business_id',
         'staff_id',
         'name',
+        'sort_order',
         'description',
         'status',
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function business(): BelongsTo
+    {
+        return $this->belongsTo(Business::class);
+    }
+
+    public function staff(): BelongsTo
+    {
+        return $this->belongsTo(Staff::class);
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -35,15 +51,5 @@ class Service extends Model
             'business_id' => 'integer',
             'staff_id' => 'integer',
         ];
-    }
-
-    public function business(): BelongsTo
-    {
-        return $this->belongsTo(Business::class);
-    }
-
-    public function staff(): BelongsTo
-    {
-        return $this->belongsTo(Staff::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Positions\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -17,7 +18,9 @@ class PositionsTable
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->formatStateUsing(fn ($record) => $record->status?->label())
+                    ->badge()
+                    ->color(fn ($record) => $record->status?->colors()),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -32,6 +35,7 @@ class PositionsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

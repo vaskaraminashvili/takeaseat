@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CityFactory extends Factory
@@ -13,7 +14,7 @@ class CityFactory extends Factory
     {
         return [
             'title' => fake()->sentence(4),
-            'status' => fake()->regexify('[A-Za-z0-9]{100}'),
+            'status' => StatusEnum::ACTIVE,
         ];
     }
 }

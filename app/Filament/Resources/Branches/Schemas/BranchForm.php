@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Branches\Schemas;
 
+use App\Enums\StatusEnum;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -20,7 +21,8 @@ class BranchForm
                     ->required(),
                 TextInput::make('name')
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(StatusEnum::class)
                     ->required(),
             ]);
     }

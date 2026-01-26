@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,6 +30,7 @@ class Business extends Model
     {
         return [
             'id' => 'integer',
+            'status' => StatusEnum::class,
         ];
     }
 }

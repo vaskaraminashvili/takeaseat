@@ -17,7 +17,9 @@ class CitiesTable
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->badge()
+                    ->color(fn($record) => $record->status?->colors())
+                    ->formatStateUsing(fn($record) => $record->status?->label()),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -17,7 +17,9 @@ class BusinessesTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->formatStateUsing(fn ($record) => $record->status?->label())
+                    ->badge()
+                    ->color(fn ($record) => $record->status?->colors()),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +29,7 @@ class Position extends Model
     {
         return [
             'id' => 'integer',
+            'status' => StatusEnum::class,
         ];
     }
 }

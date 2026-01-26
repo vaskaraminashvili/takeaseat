@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Business;
+use App\Enums\StatusEnum;
 use App\Models\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,9 +15,9 @@ class BranchFactory extends Factory
     {
         return [
             'city_id' => City::factory(),
-            'business_id' => Business::factory(),
+            'business_id' => 1,
             'name' => fake()->name(),
-            'status' => fake()->regexify('[A-Za-z0-9]{100}'),
+            'status' => StatusEnum::ACTIVE,
         ];
     }
 }
