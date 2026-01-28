@@ -22,7 +22,8 @@ class StaffForm
                 Select::make('position_id')
                     ->relationship('position', 'title')
                     ->required(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(StatusEnum::class)
                     ->required(),
             ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,7 +18,7 @@ class Service extends Model
      */
     protected $fillable = [
         'business_id',
-        'business_id',
+        'category_id',
         'name',
         'sort_order',
         'description',
@@ -49,7 +50,8 @@ class Service extends Model
         return [
             'id' => 'integer',
             'business_id' => 'integer',
-            'business_id' => 'integer',
+            'category_id' => 'integer',
+            'status' => StatusEnum::class,
         ];
     }
 }

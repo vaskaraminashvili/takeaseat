@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Services\Schemas;
 
+use App\Enums\StatusEnum;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
 class ServiceForm
@@ -13,19 +13,27 @@ class ServiceForm
     {
         return $schema
             ->components([
-                Select::make('business_id')
-                    ->relationship('business', 'name')
-                    ->required(),
-                Select::make('staff_id')
-                    ->relationship('staff', 'id')
-                    ->required(),
+
                 TextInput::make('name')
                     ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                TextInput::make('status')
+                Select::make('status')
+                    ->options(StatusEnum::class)
                     ->required(),
+
+                // Select::make('business_id')
+                //     ->relationship('business', 'name')
+                //     ->required(),
+                // Select::make('category_id')
+                //     ->relationship('category', 'name')
+                //     ->required(),
+                // TextInput::make('name')
+                //     ->required(),
+                // Textarea::make('description')
+                //     ->required()
+                //     ->columnSpanFull(),
+                // Select::make('status')
+                //     ->options(StatusEnum::class)
+                //     ->required(),
             ]);
     }
 }

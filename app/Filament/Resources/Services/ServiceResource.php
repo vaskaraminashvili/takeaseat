@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Services;
 use App\Filament\Resources\Services\Pages\CreateService;
 use App\Filament\Resources\Services\Pages\EditService;
 use App\Filament\Resources\Services\Pages\ListServices;
+use App\Filament\Resources\Services\RelationManagers\StaffRelationManager;
 use App\Filament\Resources\Services\Schemas\ServiceForm;
 use App\Filament\Resources\Services\Tables\ServicesTable;
 use App\Models\Service;
@@ -33,7 +34,7 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StaffRelationManager::class,
         ];
     }
 

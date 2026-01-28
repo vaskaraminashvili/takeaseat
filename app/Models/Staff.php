@@ -24,6 +24,14 @@ class Staff extends Model
         'status',
     ];
 
+    /**
+     * Get the staff's full name.
+     */
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
     public function branch(): BelongsTo
     {
         return $this->belongsTo(Branch::class);
