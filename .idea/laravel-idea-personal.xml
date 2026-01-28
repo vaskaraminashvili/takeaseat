@@ -4,6 +4,7 @@
     <option name="generationStringOptionValues">
       <map>
         <entry key="createEnum.backed" value=": string" />
+        <entry key="postGeneration:migration2" value="" />
       </map>
     </option>
   </component>

@@ -37,7 +37,9 @@ class Service extends Model
 
     public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Staff::class)->withPivot('price')->withTimestamps();
+        return $this->belongsToMany(Staff::class)
+            ->withPivot('price')
+            ->withTimestamps();
     }
 
     /**

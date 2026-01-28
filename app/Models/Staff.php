@@ -39,13 +39,16 @@ class Staff extends Model
 
     public function services(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Service::class)->withPivot('price')->withTimestamps();
+        return $this->belongsToMany(Service::class)
+            ->withPivot('price')
+            ->withTimestamps();
     }
 
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
     }
+
 
     /**
      * Get the attributes that should be cast.
