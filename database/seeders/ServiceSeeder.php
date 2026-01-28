@@ -18,7 +18,7 @@ class ServiceSeeder extends Seeder
         $menCategory = Category::where('name', 'პროცედურები მამაკაცებისათვის')->first();
         $injectionCategory = Category::where('name', 'ინექციური კოსმეტოლოგიის პროცედურები ქალბატონებისათვის')->first();
         $apparatusCategory = Category::where('name', 'აპარატურული კოსმეტოლოგიის პროცედურები')->first();
-        if (!$ladiesCategory || !$menCategory || !$injectionCategory || !$apparatusCategory || empty($staffIds)) {
+        if (! $ladiesCategory || ! $menCategory || ! $injectionCategory || ! $apparatusCategory || empty($staffIds)) {
             throw new \Exception('Required related records (categories or staff) are missing. Please seed businesses, staff, and categories first.');
         }
 
@@ -36,15 +36,15 @@ class ServiceSeeder extends Seeder
             'ზედაპირული პილინგი',
         ];
         foreach ($ladiesServices as $index => $title) {
-            Service::create([
+            $service = Service::create([
                 'business_id' => $businessId,
-                'staff_id' => $staffIds[array_rand($staffIds)],
                 'category_id' => $ladiesCategory->id,
                 'name' => $title,
                 'sort_order' => $index + 1,
                 'description' => 'test',
                 'status' => StatusEnum::ACTIVE,
             ]);
+            $service->staff()->attach($staffIds[array_rand($staffIds)], ['price' => 50.00]);
         }
         // Men Services
         $menServices = [
@@ -60,15 +60,15 @@ class ServiceSeeder extends Seeder
             'ზედაპირული პილინგი',
         ];
         foreach ($menServices as $index => $title) {
-            Service::create([
+            $service = Service::create([
                 'status' => StatusEnum::ACTIVE,
-                'staff_id' => $staffIds[array_rand($staffIds)],
                 'business_id' => $businessId,
                 'category_id' => $menCategory->id,
                 'name' => $title,
                 'description' => 'test',
                 'sort_order' => $index + 1,
             ]);
+            $service->staff()->attach($staffIds[array_rand($staffIds)], ['price' => 60.00]);
         }
 
         // Injection Services (first 10 as example)
@@ -85,15 +85,15 @@ class ServiceSeeder extends Seeder
             'ყვრიმალის ფილერი (INFINI - იტალია)',
         ];
         foreach ($injectionServices as $index => $title) {
-            Service::create([
+            $service = Service::create([
                 'status' => StatusEnum::ACTIVE,
-                'staff_id' => $staffIds[array_rand($staffIds)],
                 'business_id' => $businessId,
                 'category_id' => $injectionCategory->id,
                 'name' => $title,
                 'description' => 'test',
                 'sort_order' => $index + 1,
             ]);
+            $service->staff()->attach($staffIds[array_rand($staffIds)], ['price' => 150.00]);
         }
 
         // Apparatus Services (first 10 as example)
@@ -110,15 +110,15 @@ class ServiceSeeder extends Seeder
             'ცივი პლაზმა/სტრიების მოცილება (მუცელი, ფეხები, დუნდულები)',
         ];
         foreach ($apparatusServices as $index => $title) {
-            Service::create([
+            $service = Service::create([
                 'status' => StatusEnum::ACTIVE,
-                'staff_id' => $staffIds[array_rand($staffIds)],
                 'business_id' => $businessId,
                 'category_id' => $apparatusCategory->id,
                 'name' => $title,
                 'description' => 'test',
                 'sort_order' => $index + 1,
             ]);
+            $service->staff()->attach($staffIds[array_rand($staffIds)], ['price' => 200.00]);
         }
     }
 }

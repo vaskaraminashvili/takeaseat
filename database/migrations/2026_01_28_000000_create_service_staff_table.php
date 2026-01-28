@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('prices', function (Blueprint $table) {
+        Schema::create('service_staff', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('service_id')->constrained();
-            $table->decimal('amount');
-            $table->string('status', 100);
+            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('staff_id')->constrained()->cascadeOnDelete();
+            $table->decimal('price', 10, 2); // Price per staff for the service
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prices');
+        Schema::dropIfExists('service_staff');
     }
 };

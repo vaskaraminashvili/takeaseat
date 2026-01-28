@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\StatusEnum;
 use App\Models\Branch;
 use App\Models\Position;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,7 +19,7 @@ class StaffFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'position_id' => Position::factory(),
-            'status' => fake()->regexify('[A-Za-z0-9]{100}'),
+            'status' => StatusEnum::ACTIVE,
         ];
     }
 }

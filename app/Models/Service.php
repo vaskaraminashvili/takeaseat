@@ -17,7 +17,7 @@ class Service extends Model
      */
     protected $fillable = [
         'business_id',
-        'staff_id',
+        'business_id',
         'name',
         'sort_order',
         'description',
@@ -34,9 +34,9 @@ class Service extends Model
         return $this->belongsTo(Business::class);
     }
 
-    public function staff(): BelongsTo
+    public function staff(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(Staff::class);
+        return $this->belongsToMany(Staff::class)->withPivot('price')->withTimestamps();
     }
 
     /**
@@ -49,7 +49,7 @@ class Service extends Model
         return [
             'id' => 'integer',
             'business_id' => 'integer',
-            'staff_id' => 'integer',
+            'business_id' => 'integer',
         ];
     }
 }

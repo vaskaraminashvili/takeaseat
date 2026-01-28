@@ -29,6 +29,11 @@ class Staff extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function services(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Service::class)->withPivot('price')->withTimestamps();
+    }
+
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
